@@ -41,6 +41,15 @@
   #b1 .zero-chip { position: absolute; left: 120px; top: 1560px; background: rgba(255,255,255,.08);
     border: 2px solid rgba(255,255,255,.22); border-radius: 999px; padding: 18px 34px;
     font-size: 38px; font-weight: 800; color: #fff; }
+  /* money-first phase (0-0.85s): absolutely positioned over the hook's slot,
+     so the hook layout underneath is untouched; hidden by opacity, not layout */
+  #b1 .money { position: absolute; left: 0; top: 76px; width: 840px; }
+  #b1 .money .m500 { display: block; font-size: 264px; font-weight: 900; line-height: 1.02;
+    letter-spacing: -4px; color: #ff5cb8; }
+  #b1 .money .mbounty { display: block; font-size: 120px; font-weight: 900; line-height: 1.05;
+    letter-spacing: -2px; color: #fff; margin-top: 6px; }
+  #b1 .money .mpool { display: block; margin-top: 26px; font-size: 38px; font-weight: 800;
+    letter-spacing: 5px; text-transform: uppercase; color: rgba(255,255,255,.72); }
 
   /* ---- beat 2 : agent builds ---- */
   #b2 { background: linear-gradient(180deg, #221022 0%, #191419 55%, #2b0a20 100%); }
@@ -133,6 +142,11 @@
     <div class="ghost0" id="ghost0">0</div>
     <div class="inner">
       <span class="kicker on-dark" id="b1kick">make.fun bounty</span>
+      <div class="money" id="b1money">
+        <span class="m500"><span class="word" data-m>$500</span></span>
+        <span class="mbounty"><span class="word" data-m>bounty</span></span>
+        <span class="mpool">total prize pool</span>
+      </div>
       <div class="big">
         <span class="row"><span class="word" data-w>Zero</span> <span class="word" data-w>code?</span></span>
         <span class="row"><span class="word" data-w>You</span> <span class="word" data-w>can</span> <span class="word mag-light" data-w>still</span></span>
@@ -288,10 +302,24 @@
     window.__t = t;
     BEATS.forEach((b) => showBeat(b.el, t, b.from, b.to));
 
-    // --- beat 1 --- (first word starts just before t=0 so frame 0 is not empty)
-    popWords("#b1", -0.05, 0.13);
-    fadeIn($("#b1sub"), t, 1.15, 0.5);
-    fadeIn($("#b1chip"), t, 1.45, 0.4);
+    // --- beat 1 --- money first, then hook (second opinion: lead with the money)
+    // "$500 bounty" pops in at t=0, holds to 0.80s, fades out 0.80-0.85s (a fast
+    // cut, so the beat never sits empty between the money and the hook).
+    // Hook words pop in from 0.85s, step 0.08s, so "win." is fully in by ~1.6s.
+    const mIn = clamp01(t / 0.12);
+    const mOut = clamp01((0.85 - t) / 0.05);
+    const money = $("#b1money");
+    money.style.opacity = (mIn * mOut).toFixed(3);
+    money.style.transform = "translateY(" + ((1 - easeOutCubic(mIn)) * 30).toFixed(1) + "px)";
+    document.querySelectorAll("#b1money [data-m]").forEach((w, i) => {
+      const u = easeOutBack((t - (i * 0.10)) / 0.45);
+      w.style.opacity = clamp01((t - (i * 0.10)) / 0.18).toFixed(3);
+      w.style.transform = "translateY(" + ((1 - u) * 60).toFixed(1) + "px) scale(" + (0.55 + 0.45 * u).toFixed(3) + ")";
+    });
+    fadeIn($("#b1 .mpool"), t, 0.30, 0.3);
+    popWords("#b1 .big", 0.85, 0.08);
+    fadeIn($("#b1sub"), t, 1.45, 0.35);
+    fadeIn($("#b1chip"), t, 1.60, 0.30);
     const g = $("#ghost0");
     g.style.transform = "translateY(" + (-(t * 14)).toFixed(1) + "px) scale(" + (1 + t * 0.02).toFixed(3) + ")";
     g.style.opacity = clamp01((t - 0.1) / 0.4).toFixed(3);

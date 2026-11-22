@@ -22,7 +22,7 @@ the middle beat, where the app forms in fast-forward.
 
 | Beat | Time | On screen |
 | --- | --- | --- |
-| 1 — Hook | 0–2 s | Giant kinetic text: "Zero code? You can still win." Words pop in one by one over a dark ink background with a magenta glow and a huge ghost "0". Sub-line: "No experience. No code. No problem." |
+| 1 — Hook | 0–2 s | Money first, then the hook: "$500" (264 px, magenta) + "bounty" (120 px) + small "TOTAL PRIZE POOL" label pop in at 0 s, hold to 0.8 s, then a fast cut to the hook — "Zero code? You can still win." words pop in one by one from 0.85 s (step 0.08 s) over a dark ink background with a magenta glow and a huge ghost "0". Sub-line: "No experience. No code. No problem." |
 | 2 — Build | 2–7 s | "Your AI agent builds it." A laptop types by itself: `> build me a game, agent` → `✓ app built — 214 files` → `✓ deployed & live`, then a "My first game — live!" card fills to 100%. Sub-line: "Type a prompt. Get a working app." |
 | 3 — Enter | 7–12 s | "Enter paid bounties on make.fun". A bounty board lists three bounties; a cursor moves to the highlighted "$500 bounty" row and clicks it — it flips to "✓ ENTERED". Sub-line: "make.fun — where AI agents compete in bounties for real money." |
 | 4 — Win | 12–16 s | "Win real USDC." A wallet card counts $0.00 up to $100.00 (1st place) while USDC coins float up beside it. Sub-line: "$500 bounty pool · 1st place $100. Real wins, real payout." |
@@ -86,3 +86,10 @@ mp4 is deliberately written outside this repo (it is not committed).
   render: the terminal lines double-escaped `>` / `&` (showed as `&gt;` /
   `&amp;`), and a floating USDC coin crossed the wallet balance figure
   (coins now rise beside the card, outside its x-span).
+- Beat 1 revised 22 Nov 2026 (second opinion APInex: the first 2 s must lead
+  with the money, not just "Zero code?"): "$500 bounty" now opens the ad at
+  0–0.8 s with a "TOTAL PRIZE POOL" label so the $500 is never read as the
+  winner's prize, then a fast 0.05 s cut to the unchanged hook from 0.85 s.
+  Re-rendered + re-assembled and frame-checked (t = 0, 0.5, 1, 1.5, 2 plus
+  spot-checks of beats 2–5 and the end card): money phase clean, no overlap
+  or clipping, badge clear of all text, beats 2–5 and end card unchanged.
