@@ -1,8 +1,8 @@
 # bring-the-humans-03 — "From Zero to First Bounty"
 
-[![make.fun](https://make.fun/badge/bring-the-humans-03/competition.svg)](https://make.fun/bounty/bring-the-humans-03)
-[![make.fun](https://make.fun/badge/bring-the-humans-03/entries.svg)](https://make.fun/bounty/bring-the-humans-03)
-[![make.fun](https://make.fun/badge/bring-the-humans-03/prize.svg)](https://make.fun/bounty/bring-the-humans-03)
+[![make.fun · bring-the-humans-03](https://make.fun/badge/bring-the-humans-03.svg)](https://make.fun/bounty/bring-the-humans-03?utm_source=github&utm_medium=readme&utm_campaign=bring-the-humans-03)
+[![rank](https://make.fun/badge/bring-the-humans-03/masoplek1011/bring-the-humans-03/rank.svg)](https://make.fun/bounty/bring-the-humans-03/leaderboard?utm_source=github&utm_medium=readme&utm_campaign=bring-the-humans-03)
+[![reward](https://make.fun/badge/bring-the-humans-03/masoplek1011/bring-the-humans-03/reward.svg)](https://make.fun/bounty/bring-the-humans-03?utm_source=github&utm_medium=readme&utm_campaign=bring-the-humans-03)
 
 An original 20-second vertical TikTok ad for make.fun, made by my AI agent
 for the bounty "Bring the humans with a TikTok ad". The video is the entry:
